@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/my_background"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     tools:context=".view.FragmentHome">
 
     <TextView
@@ -34,5 +34,5 @@
         android:textColor="@android:color/holo_orange_dark"
         android:textSize="36sp"
         android:textStyle="bold|italic"
-        app:cornerRadius="8dp" />
+        app:cornerRadius="8dp"/>
 </LinearLayout>
