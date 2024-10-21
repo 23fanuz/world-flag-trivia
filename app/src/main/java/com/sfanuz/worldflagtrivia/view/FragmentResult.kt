@@ -6,15 +6,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.sfanuz.worldflagtrivia.R
+import com.sfanuz.worldflagtrivia.databinding.FragmentResultBinding
 
 class FragmentResult : Fragment() {
+
+    lateinit var fragmentResultBinding : FragmentResultBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_result, container, false)
+
+        fragmentResultBinding = FragmentResultBinding.inflate(inflater, container, false)
+
+        fragmentResultBinding.buttonNewQuiz.setOnClickListener {
+
+
+        }
+
+        fragmentResultBinding.buttonExit.setOnClickListener {
+
+
+
+        }
+        return fragmentResultBinding.root
     }
 
 }
