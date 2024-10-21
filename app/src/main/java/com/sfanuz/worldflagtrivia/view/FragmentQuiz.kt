@@ -58,6 +58,8 @@ class FragmentQuiz : Fragment() {
 
         fragmentQuizBinding.buttonNext.setOnClickListener {
 
+            questionNumber++
+            showData()
         }
 
         return fragmentQuizBinding.root
@@ -72,6 +74,25 @@ class FragmentQuiz : Fragment() {
         fragmentQuizBinding.imageViewFlag.setImageResource(resources.getIdentifier(correctFlag.flagName, "drawable", requireActivity().packageName))
 
         wrongFlags = dao.getRandomThreeRecords(DatabaseCopyHelper(requireActivity()),correctFlag.id)
+
+        val mixOptions = HashSet<FlagsModel>()
+        mixOptions.add(correctFlag)
+        mixOptions.add(wrongFlags[0])
+        mixOptions.add(wrongFlags[1])
+        mixOptions.add(wrongFlags[2])
+
+        val options = ArrayList<FlagsModel>()
+        options.clear()
+
+        for (eachFlag in mixOptions) {
+            options.add(eachFlag)
+        }
+
+        fragmentQuizBinding.buttonA.text = options[0].countryName
+        fragmentQuizBinding.buttonB.text = options[1].countryName
+        fragmentQuizBinding.buttonC.text = options[2].countryName
+        fragmentQuizBinding.buttonD.text = options[3].countryName
+
 
 
 
