@@ -4,7 +4,18 @@ Welcome to the World Flag Trivia Game! This Android app is designed to test your
 
 📱 Screenshots
 
-Coming Soon.
+### Home Screen
+<img src="home_screen.png" alt="Home Screen" width="150"/>
+
+### Game Screens
+ <img src="game_screen1.png" alt="Game Screen 1" width="150"/>
+ <img src="game_screen2.png" alt="Game Screen 2" width="150"/>
+
+
+### Result Screen
+<img src="results.png" alt="Result Screen" width="150"/>
+
+
 
 🚀 Features
 
