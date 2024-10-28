@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
@@ -82,12 +83,13 @@ class FragmentResult : Fragment() {
 
         fragmentResultBinding.buttonNewQuiz.setOnClickListener {
 
+            this.findNavController().popBackStack(R.id.fragmentHome, inclusive = false)
 
         }
 
         fragmentResultBinding.buttonExit.setOnClickListener {
 
-
+            requireActivity().finish()
 
         }
         return fragmentResultBinding.root
