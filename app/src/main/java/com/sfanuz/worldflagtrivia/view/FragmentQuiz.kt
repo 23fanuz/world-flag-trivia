@@ -62,6 +62,7 @@ class FragmentQuiz : Fragment() {
 
             questionNumber++
             showData()
+            setButtonToInitialProperties()
         }
 
         return fragmentQuizBinding.root
@@ -112,7 +113,7 @@ class FragmentQuiz : Fragment() {
             wrongNumber++
             fragmentQuizBinding.textViewWrong.text = wrongNumber.toString()
             button.setBackgroundColor(Color.RED)
-            button.setBackgroundColor(Color.WHITE)
+            //button.setBackgroundColor(resources.getColor(R.color.my_background))
 
             when(correctAnswer){
                 fragmentQuizBinding.buttonA.text -> fragmentQuizBinding.buttonA.setBackgroundColor(Color.GREEN)
@@ -129,6 +130,30 @@ class FragmentQuiz : Fragment() {
         fragmentQuizBinding.buttonB.isClickable = false
         fragmentQuizBinding.buttonC.isClickable = false
         fragmentQuizBinding.buttonD.isClickable = false
+    }
+
+
+    private fun setButtonToInitialProperties() {
+
+        fragmentQuizBinding.buttonA.apply {
+            setBackgroundColor(resources.getColor(R.color.my_background))
+            isClickable = true
+        }
+
+        fragmentQuizBinding.buttonB.apply {
+            setBackgroundColor(resources.getColor(R.color.my_background))
+            isClickable = true
+        }
+
+        fragmentQuizBinding.buttonC.apply {
+            setBackgroundColor(resources.getColor(R.color.my_background))
+            isClickable = true
+        }
+
+        fragmentQuizBinding.buttonD.apply {
+            setBackgroundColor(resources.getColor(R.color.my_background))
+            isClickable = true
+        }
     }
 
 }
