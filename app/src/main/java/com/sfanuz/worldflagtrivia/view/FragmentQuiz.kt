@@ -1,10 +1,12 @@
 package com.sfanuz.worldflagtrivia.view
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import com.sfanuz.worldflagtrivia.R
 import com.sfanuz.worldflagtrivia.database.FlagsDao
 import com.sfanuz.worldflagtrivia.databinding.FragmentQuizBinding
@@ -41,19 +43,19 @@ class FragmentQuiz : Fragment() {
 
 
         fragmentQuizBinding.buttonA.setOnClickListener {
-
+            answerControl(fragmentQuizBinding.buttonA)
         }
 
         fragmentQuizBinding.buttonB.setOnClickListener {
-
+            answerControl(fragmentQuizBinding.buttonB)
         }
 
         fragmentQuizBinding.buttonC.setOnClickListener {
-
+            answerControl(fragmentQuizBinding.buttonC)
         }
 
         fragmentQuizBinding.buttonD.setOnClickListener {
-
+            answerControl(fragmentQuizBinding.buttonD)
         }
 
         fragmentQuizBinding.buttonNext.setOnClickListener {
@@ -94,10 +96,39 @@ class FragmentQuiz : Fragment() {
         fragmentQuizBinding.buttonD.text = options[3].countryName
 
 
+    }
+
+    private fun answerControl(button : Button){
+
+        val clickedOptionText = button.text.toString()
+        val correctAnswer = correctFlag.countryName
+
+        if (clickedOptionText == correctAnswer) {
+            correctNumber++
+            fragmentQuizBinding.textViewCorrect.text = correctNumber.toString()
+            button.setBackgroundColor(Color.GREEN)
+        } else {
+
+            wrongNumber++
+            fragmentQuizBinding.textViewWrong.text = wrongNumber.toString()
+            button.setBackgroundColor(Color.RED)
+            button.setBackgroundColor(Color.WHITE)
+
+            when(correctAnswer){
+                fragmentQuizBinding.buttonA.text -> fragmentQuizBinding.buttonA.setBackgroundColor(Color.GREEN)
+                fragmentQuizBinding.buttonB.text -> fragmentQuizBinding.buttonB.setBackgroundColor(Color.GREEN)
+                fragmentQuizBinding.buttonC.text -> fragmentQuizBinding.buttonC.setBackgroundColor(Color.GREEN)
+                fragmentQuizBinding.buttonD.text -> fragmentQuizBinding.buttonD.setBackgroundColor(Color.GREEN)
+
+            }
 
 
+        }
 
-
+        fragmentQuizBinding.buttonA.isClickable = false
+        fragmentQuizBinding.buttonB.isClickable = false
+        fragmentQuizBinding.buttonC.isClickable = false
+        fragmentQuizBinding.buttonD.isClickable = false
     }
 
 }
