@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.sfanuz.worldflagtrivia.R
 import com.sfanuz.worldflagtrivia.database.FlagsDao
 import com.sfanuz.worldflagtrivia.databinding.FragmentQuizBinding
@@ -27,6 +29,9 @@ class FragmentQuiz : Fragment() {
     lateinit var correctFlag : FlagsModel
     var wrongFlags = ArrayList<FlagsModel>()
     val dao = FlagsDao()
+
+
+    var optionControl  = false
 
 
     override fun onCreateView(
@@ -61,8 +66,39 @@ class FragmentQuiz : Fragment() {
         fragmentQuizBinding.buttonNext.setOnClickListener {
 
             questionNumber++
-            showData()
-            setButtonToInitialProperties()
+
+            if (questionNumber > 9){
+
+                if (!optionControl) {
+                    emptyNumber++
+                }
+
+                val direction = FragmentQuizDirections.actionFragmentQuizToFragmentResult().apply {
+
+                    correct = correctNumber
+                    wrong = wrongNumber
+                    empty = emptyNumber
+                }
+
+                this.findNavController().apply {
+                    navigate(direction)
+                    popBackStack(R.id.fragmentResult, false)
+                }
+
+               // Toast.makeText(requireActivity(), "Quiz is finished!", Toast.LENGTH_SHORT).show()
+            } else {
+
+                showData()
+
+                if (!optionControl) {
+                    emptyNumber++
+                    fragmentQuizBinding.textViewEmpty.text = emptyNumber.toString()
+                } else {
+                    setButtonToInitialProperties()
+                }
+            }
+
+            optionControl = false
         }
 
         return fragmentQuizBinding.root
@@ -130,6 +166,8 @@ class FragmentQuiz : Fragment() {
         fragmentQuizBinding.buttonB.isClickable = false
         fragmentQuizBinding.buttonC.isClickable = false
         fragmentQuizBinding.buttonD.isClickable = false
+
+        optionControl = true
     }
 
 
